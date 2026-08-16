@@ -1,111 +1,972 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Animaster — صانع مواقع ومبرمج ألعاب</title>
-  <meta name="description" content="Animaster — صانع مواقع ومبرمج ألعاب. مشاريع، قناة يوتيوب، وألعاب ويب.">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-  <style>
-    :root { --accent: #ff6b6b; }
-    body { font-family: 'Cairo', sans-serif; background: linear-gradient(180deg, #0f172a, #071033); }
-    .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(6px); }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animaster</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Cairo:wght@600;700;800&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+            font-family: "Cairo", "Poppins", sans-serif;
+        }
+
+
+
+        /* التحكم في حجم اللوجو وشكله الدائري */
+        .logo-img {
+            width: 100px;            /* حدد عرض الصورة */
+            height: 100px;           /* اجعل الارتفاع مساويًا للعرض تمامًا */
+            border-radius: 50%;     /* تحويل الشكل إلى دائري */
+            object-fit: cover;      /* قص الصورة بذكاء داخل الدائرة دون مطّها */
+            max-width: 100%;
+        }
+
+        /* في حالة وجود رابط حول الشعار */
+        .logo-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        body {
+            background-color: #0d1117;
+            background-image: url("assets/svg/New background.svg");
+            color: #fff;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;  
+            align-items: center; 
+            padding: 1rem 2rem;
+            max-width: 1280px;
+            margin: 0 auto;  
+            border-radius: 10px;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #f1c40f;  
+            text-decoration: none;
+        }
+
+        .navigation ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            padding: 0;
+        }
+
+        .navigation a {
+            display: inline-block;
+            text-decoration: none;
+            color: #f1c40f;
+            font-weight: bold;
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            border: 1px solid rgba(241, 196, 15, 0.4);
+            background: rgba(241, 196, 15, 0.08);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .navigation a:hover {
+            color: #0d1117;
+            background: #f1c40f;
+            border-color: #f1c40f;
+            box-shadow: 0 4px 15px rgba(241, 196, 15, 0.4);
+            transform: translateY(-3px);
+        }
+        hr {
+            opacity: 0.5;
+            border: none;
+            border-top: 1px solid rgb(33, 211, 255);
+        }
+
+        .hero {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            align-items: center;
+            margin: 2rem auto;
+            max-width: 1280px;
+            padding: 0 1rem;
+            position: relative;
+        }
+
+        .heroimg {
+            margin-right: auto;
+        }
+
+        .arrow {
+            position: absolute;
+            right: -5.5rem;
+            transform: scaleX(-1);
+        }
+
+        .herosub {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .name {
+            font-size: 3rem;
+            color: rgb(171, 219, 249);
+        }
+
+        .title {
+            font-size: 2rem;
+            color: aqua;
+        }
+
+        .herobtns a {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 5px;
+        }
+
+        .communicate-me {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .download-cv {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .aboutMe {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 5rem auto;
+            max-width: 1200px;
+            padding: 0 1rem;
+            gap: 4rem;
+        }
+
+        .textcontainer {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .texttitle, .projecttitle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 2rem;
+        }
+
+        .aboutname, .workname {
+            color: #eee;
+        }
+
+        .abouttitle, .worktitle {
+            color: #00adb5;
+        }
+
+        .aboutmepar {
+            text-align: justify;
+            font-size: 1.5rem;
+            color: rgba(171, 219, 249, 0.9);
+            margin-top: 1rem;
+            line-height: 1.8;
+        }
+
+        .subtitle {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #4dc3d7;
+            margin-top: 1rem;
+        }
+
+        .works {
+            padding: 1rem;
+            margin: 5rem auto;
+            max-width: 1280px;
+        }
+
+        .works ul.main-works {
+            display: flex;
+            list-style-type: none;
+            align-items: center;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .works li {
+            border-radius: 16px;
+            background-color: rgba(51, 74, 111, 0.5);
+            backdrop-filter: blur(4px);
+            padding: 1rem 2rem;
+        }
+
+        .works img {
+            width: 240px;
+            height: 240px;
+            object-fit: contain;
+            transition: transform 0.2s;
+        }
+
+        .works li:hover img {
+            transform: scale(1.1);
+        }
+
+        .work-expandable {
+            cursor: pointer;
+        }
+
+        /* --- تصميم النافذة المنبثقة (Modal) والخلفية المعتمة --- */
+        .modal-overlay {
+            display: none; /* مخفية افتراضياً */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85); /* تعتيم الخلفية */
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: #111827;
+            border: 1px solid rgba(0, 173, 181, 0.5);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            max-width: 900px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 173, 181, 0.2);
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        /* زر الإغلاق X */
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            font-size: 2rem;
+            color: #aaa;
+            cursor: pointer;
+            background: none;
+            border: none;
+            line-height: 1;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .close-btn:hover {
+            color: #ff4757;
+            transform: scale(1.2);
+        }
+
+        .sub-works-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #f1c40f;
+            margin-bottom: 2rem;
+        }
+
+        .sub-works-list {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            list-style: none;
+        }
+
+        .sub-work-card {
+            background: rgba(30, 41, 59, 0.9);
+            border: 1px solid rgba(0, 173, 181, 0.3);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            width: 220px;
+        }
+
+        .sub-work-card:hover {
+            transform: translateY(-8px);
+            border-color: #00adb5;
+            box-shadow: 0 10px 25px rgba(0, 173, 181, 0.4);
+        }
+
+        .sub-work-card a {
+            text-decoration: none;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .sub-work-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .sub-work-card h4 {
+            font-size: 1.4rem;
+            color: #4dc3d7;
+        }
+
+        /* --- قسم القنوات والشركاء --- */
+        .teams-section {
+            padding: 50px 20px;
+            text-align: center;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .teams-section h2 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #AED6F1; 
+            margin-bottom: 10px;
+        }
+
+        .teams-section p {
+            font-size: 18px;
+            color: #D6EAF8; 
+            margin-bottom: 30px;
+        }
+
+        .teams-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            padding: 20px 0;
+        }
+
+        .team-card {
+            color: #4dc3d7;
+            font-size: 16px;
+            margin-bottom: 30px;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
+            max-width: 320px;
+            position: relative;
+            backdrop-filter: blur(8px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .team-card p {
+            color: #00be8e;
+            font-size: 15px;
+            margin-top: 8px;
+            line-height: 1.6;
+        }
+
+        .team-card h3 {
+            margin-top: 15px;
+            font-size: 1.4rem;
+        }
+
+        .team-card img {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            transition: transform 0.4s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .team-card:hover img {
+            transform: scale(1.1) rotate(4deg);
+        }
+
+        .card-toonflex {
+            border-color: rgba(0, 173, 181, 0.3);
+            animation: toonflexPulse 4s infinite alternate ease-in-out;
+        }
+
+        .card-toonflex:hover {
+            border-color: #00adb5;
+            box-shadow: 0 0 25px rgba(0, 173, 181, 0.5), inset 0 0 15px rgba(0, 173, 181, 0.2);
+        }
+
+        .card-channel {
+            border-color: rgba(115, 0, 255, 0.3);
+            animation: channel 4s infinite alternate ease-in-out;
+        }
+
+        .card-channel:hover {
+            border-color: #7300ff;
+            box-shadow: 0 0 25px rgba(115, 0, 255, 0.5), inset 0 0 15px rgba(115, 0, 255, 0.2);
+        }
+
+        .card-aurayko {
+            border-color: rgba(255, 87, 34, 0.3);
+            animation: auraykoFlame 3.5s infinite alternate ease-in-out;
+        }
+
+        .card-aurayko:hover {
+            border-color: #ff5722;
+            box-shadow: 0 0 25px rgba(255, 87, 34, 0.6), inset 0 0 15px rgba(255, 87, 34, 0.2);
+        }
+
+        @keyframes toonflexPulse {
+            0% { box-shadow: 0 4px 15px rgba(0, 173, 181, 0.15); }
+            100% { box-shadow: 0 8px 25px rgba(0, 173, 181, 0.35); }
+        }
+
+        @keyframes auraykoFlame {
+            0% { box-shadow: 0 4px 15px rgba(255, 87, 34, 0.15); }
+            100% { box-shadow: 0 8px 25px rgba(255, 87, 34, 0.4); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #videos {
+            text-align: center;
+            margin: 5rem 0;
+            padding: 0 1rem;
+        }
+
+        .my {
+            color: #98ffe5;
+            font-size: 2.5rem;
+        }
+
+        .videos {
+            color: #00adb5;
+            font-size: 2.5rem;
+        }
+
+        .video-item {
+            display: inline-block;
+            margin: 15px;
+            max-width: 300px;
+            vertical-align: top;
+            background-color: rgba(51, 74, 111, 0.4);
+            border-radius: 12px;
+            padding: 12px;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .video-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .video-item a {
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .video-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .video-item img:hover {
+            transform: scale(1.03);
+        }
+
+        .video-title {
+            color: #98ffe5;
+            margin-top: 12px;
+            font-size: 1rem;
+            line-height: 1.5;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 4px 14px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            border-radius: 20px;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .badge-waha {
+            background: linear-gradient(135deg, #f39c12, #d35400);
+            color: #ffffff;
+        }
+
+        .badge-personal {
+            background: linear-gradient(135deg, #00adb5, #007bff);
+            color: #ffffff;
+        }
+
+        .site-footer {
+            background: linear-gradient(180deg, rgba(25, 12, 48, 0.8) 0%, rgba(15, 6, 30, 0.95) 100%);
+            border-top: 1px solid rgba(0, 173, 181, 0.3);
+            backdrop-filter: blur(12px);
+            padding: 3rem 1.5rem 1.5rem 1.5rem;
+            margin-top: 6rem;
+            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .footer-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.6rem;
+            color: #00adb5;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-brand p {
+            color: #aad3ff;
+            font-size: 0.95rem;
+            opacity: 0.85;
+        }
+
+        .footer-social {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 0.8rem;
+        }
+
+        .footer-social-title {
+            font-size: 1.1rem;
+            color: #f1c40f;
+            font-weight: bold;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            list-style: none;
+        }
+
+        .social-card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .social-card img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .social-card:hover {
+            background: rgba(0, 173, 181, 0.2);
+            border-color: #00adb5;
+            transform: translateY(-4px);
+            box-shadow: 0 6px 15px rgba(0, 173, 181, 0.3);
+        }
+
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 2rem auto 0 auto;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            text-align: center;
+            font-size: 0.9rem;
+            color: #8a99ad;
+        }
+
+        .footer-bottom span {
+            color: #00adb5;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            /* تغيير حجم اللوجو على الشاشات الصغيرة إذا لزم الأمر */
+            .logo-img {
+                height: 40px;
+            }
+
+            .navigation ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .hero, .aboutMe {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .arrow {
+                display: none;
+            }
+
+            .aboutmepar {
+                text-align: center;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-social {
+                align-items: center;
+            }
+
+            .sub-works-list {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .sub-work-card {
+                width: 100%;
+                max-width: 280px;
+            }
+        }
+    </style>
 </head>
-<body class="text-gray-200 antialiased">
+<body>
 
-<!-- Header -->
-<header class="py-4 glass sticky top-0 z-50">
-  <div class="container mx-auto px-6 flex items-center justify-between">
-    <a href="#hero" class="flex items-center gap-3">
-      <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-pink-500 to-yellow-400 flex items-center justify-center text-xl font-extrabold">A</div>
-      <div>
-        <div class="text-lg font-bold">Animaster</div>
-        <div class="text-sm text-gray-300">صانع مواقع • مبرمج ألعاب•  محتوي كرتون</div>
-      </div>
-    </a>
-    <nav class="hidden md:flex gap-6 text-sm">
-      <a href="#projects" class="hover:text-pink-400">المشاريع</a>
-      <a href="#youtube" class="hover:text-pink-400">قناتي</a>
-      <a href="#about" class="hover:text-pink-400">عنّي</a>
-      <a href="#contact" class="hover:text-pink-400">تواصل</a>
-    </nav>
-    <button id="menuBtn" class="md:hidden p-2 glass rounded-lg">☰</button>
-  </div>
-  <div id="mobileMenu" class="hidden mt-3 container mx-auto px-6">
-    <div class="glass p-4 rounded-lg flex flex-col gap-3 text-sm">
-      <a href="#projects">المشاريع</a>
-      <a href="#youtube">قناتي</a>
-      <a href="#about">عنّي</a>
-      <a href="#contact">تواصل</a>
+    <hr />
+
+    <header>
+<img src="assets/svg/new logo 2.png" alt="شعار أنيمستر" class="logo-img"/>
+        <nav class="navigation">
+            <ul>
+                <li><a href="#aboutMe">عني</a></li>
+                <li><a href="#works">أعمالي</a></li>
+                <li><a href="#teams-section">قنوات</a></li>
+                <li><a href="#videos">فيديوهاتي</a></li>
+                <li><a href="#contactMe">تواصل معي</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <hr />
+
+    <section class="hero">
+        <img class="arrow" src="assets/svg/new arrow.svg" alt="سهم"/>
+        <div class="herosub">
+            <h2 class="name">أنا محمد أمين أحمد</h2>
+            <h3 class="title">مبرمج وكاتب</h3>
+            <div class="herobtns">
+                <a class="communicate-me" href="#contactMe">تواصل معي</a>
+                <a class="download-cv" href="assets/CV_Mohammed_Amin.pdf" download>تحميل السيرة الذاتية</a>
+            </div>
+        </div>    
+        <img src="assets/svg/new hero.png" alt="صورة البطل" class="heroimg"/>
+    </section>
+    
+    <hr/>
+
+    <section class="aboutMe" id="aboutMe">
+        <img src="assets/svg/AboutMe.png" alt="صورة عني" class="about-me-img"/>
+        <div class="textcontainer">
+            <div class="texttitle">
+                <h3 class="aboutname">نبذة</h3>
+                <h3 class="abouttitle">عني</h3>
+                <img src="assets/svg/lightbulb.svg" alt="مصباح" class="light"/>
+            </div>
+            <p class="subtitle">مكتبتي / قناة يوتيوب</p>
+            <p class="aboutmepar">
+                كاتب / مؤدي صوتي / مبرمج /   
+                مسؤول في: Toon Flex +, Aurayko.
+            </p>
+        </div>
+    </section>
+    
+    <hr/>
+
+    <section class="works" id="works">
+        <div class="projecttitle">
+            <h3 class="workname">أعمالي </h3>
+            <h3 class="worktitle">الحديثة</h3>
+        </div>
+        <ul class="main-works">
+            <li>
+                <a href="https://www.instagram.com/animaster_channel?igsh=MWt6emI2NTFtNTcxYQ==" target="_blank">
+                    <img src="assets/imgs/writing.png" alt="كتابة"/>
+                </a>
+            </li>
+            <li>
+                <a href="https://youtube.com/@animaster_channel?si=ACCNV-O7EgYsPEPj" target="_blank">
+                    <img src="assets/imgs/New Animaster Channel.png" alt="قناتي"/>
+                </a>
+            </li>    
+            <!-- عمل 3 عند الضغط عليه يفتح النافذة المنبثقة -->
+            <li class="work-expandable" onclick="openModal()">
+                <a href="javascript:void(0);">
+                    <img src="assets/imgs/New Some Works.png" alt="بعض الأعمال"/>
+                </a>
+            </li>                    
+        </ul>
+    </section>
+
+    <!-- النافذة المنبثقة (Popup Modal) -->
+    <div class="modal-overlay" id="subWorksModal" onclick="closeModalOnOverlay(event)">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+            <h3 class="sub-works-title">اختر القسم:</h3>
+            <ul class="sub-works-list">
+                <li class="sub-work-card">
+                    <a href="https://dev-zorix.itch.io/" target="_blank">
+                        <img src="assets/lemon icon.png" alt="Games" />
+                        <h4>Games</h4>
+                    </a>
+                </li>
+                <li class="sub-work-card">
+                    <a href="https://www.youtube.com/watch?v=mnkqqBr6oWU" target="_blank">
+                        <img src="assets/Lava axis poster.png" alt="Animation" />
+                        <h4>Animation</h4>
+                    </a>
+                </li>
+                <li class="sub-work-card">
+                    <a href="https://motoon100.github.io/big_bank_web/" target="_blank">
+                        <img src="assets/big bank web.jpg" alt="Web" />
+                        <h4>Web</h4>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
-  </div>
-</header>
+    
+    <hr>
 
-<!-- Hero -->
-<section id="hero" class="container mx-auto px-6 py-12 grid md:grid-cols-2 gap-8 items-center">
-  <div data-aos="fade-up">
-    <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">مرحباً — أنا <span style="color:var(--accent)">Animaster</span></h1>
-    <p class="mt-4 text-gray-300">صانع مواقع إلكترونية ومبرمج ألعاب. أقدّم مواقع مُحكَمة، ألعاب سلسة، ومحتوى كرتون على يوتيوب.</p>
-    <div class="mt-6 flex flex-wrap gap-3">
-      <a href="https://youtube.com/@animaster_channel" target="_blank" class="px-4 py-2 rounded-lg font-semibold glass">اشترك في قناتي</a>
-      <a href="https://www.instagram.com/animaster_channel" target="_blank" class="px-4 py-2 rounded-lg font-semibold border border-gray-600">انستاجرام</a>
-      <a href="#projects" class="px-4 py-2 rounded-lg font-semibold text-white" style="background:linear-gradient(90deg,#ff6b6b,#ffb86b)">مشاريعي</a>
-    </div>
-  </div>
-  <div data-aos="fade-left" class="rounded-xl overflow-hidden shadow-lg">
-    <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/pjz85K8iT5k" title="فيديو كرتوني" frameborder="0" allowfullscreen></iframe>
-  </div>
-</section>
+    <section class="teams-section" id="teams-section">
+        <h2>قنوات أُديرها</h2>
+        <p>هذه هي الفرق المذهلة التي أعمل بها كمسؤول.</p>
 
-<!-- Projects -->
-<section id="projects" class="py-12 container mx-auto px-6">
-  <h2 class="text-2xl font-bold mb-6" data-aos="fade-up">مشاريع مختارة</h2>
-  <div class="grid sm:grid-cols-2 gap-6">
-    <div class="glass p-4 rounded-lg" data-aos="zoom-in">
-      <h3 class="font-semibold">Animatix</h3>
-      <p class="text-sm text-gray-300 mt-2">موقع تفاعلي لعرض الحركات والخلفيات.</p>
-      <a href="https://motoon100.github.io/Animatix/" target="_blank" class="text-pink-400 underline mt-3 inline-block">عرض المشروع</a>
-    </div>
-    <div class="glass p-4 rounded-lg" data-aos="zoom-in" data-aos-delay="100">
-      <h3 class="font-semibold">Lava Axis</h3>
-      <p class="text-sm text-gray-300 mt-2">تجربة ويب تفاعلية/لعبة صغيرة.</p>
-      <a href="https://motoon100.github.io/lava_axis/" target="_blank" class="text-pink-400 underline mt-3 inline-block">عرض المشروع</a>
-    </div>
-  </div>
-</section>
+        <div class="teams-container">
+            <!-- بطاقة Toon Flex -->
+            <div class="team-card card-toonflex">
+                <a href="https://www.youtube.com/@itstoonflex-plus" target="_blank">
+                    <img src="assets/svg/new toonflex.png" alt="Toon Flex"/>
+                </a>
+                <h3>Toon Flex</h3>
+                <p>فريق إبداعي متخصص في تحليل والتكلم عن الرسوم المتحركة.</p>
+            </div>
 
-<!-- About -->
-<section id="about" class="py-12 container mx-auto px-6">
-  <h2 class="text-2xl font-bold mb-4" data-aos="fade-up">عنّي</h2>
-  <div class="glass p-6 rounded-lg text-gray-300" data-aos="fade-up" data-aos-delay="100">
-    أنا مطوّر ومصمّم مواقع ومبرمج ألعاب. أحب تصميم واجهات بسيطة وسريعة، بالإضافة إلى ألعاب صغيرة مسلية للويب أو كـ exe.
-  </div>
-</section>
+            <!-- بطاقة Aurayko -->
+            <div class="team-card card-aurayko">
+                <a href="https://www.youtube.com/@Aurayko_animation" target="_blank">
+                    <img src="assets/svg/Aurayko logo-circle.png" alt="Aurayko"/>
+                </a>
+                <h3>Aurayko</h3>
+                <p>ابتكار محتوى رسوم متحركة أصلي | موطن "لافا أكسيس" 🌋 .</p>
+            </div>
+        </div>
 
-<!-- Contact -->
-<section id="contact" class="py-12 container mx-auto px-6">
-  <h2 class="text-2xl font-bold mb-4" data-aos="fade-up">تواصل معي</h2>
-  <div class="flex gap-4" data-aos="fade-up" data-aos-delay="100">
-    <a href="https://youtube.com/@animaster_channel" target="_blank" class="text-pink-400 underline">يوتيوب</a>
-    <a href="https://www.instagram.com/animaster_channel" target="_blank" class="text-pink-400 underline">انستاجرام</a>
-  </div>
-</section>
+    <hr>
+        <h2>قنوات عملت معها</h2>
 
-<!-- Footer -->
-<footer class="py-8 glass text-center text-sm text-gray-400">
-  © <span id="year"></span> Animaster — جميع الحقوق محفوظة.
-</footer>
+        <div class="teams-container">
+            <!-- بطاقة Wahatoon -->
+            <div class="team-card card-channel">
+                <a href="https://www.youtube.com/@Wahatoon" target="_blank">
+                    <img src="assets/svg/wahatoon logo.png" alt="Waha toon"/>
+                </a>
+                <h3>Waha toon</h3>
+                <p>تقدم محتوى ترفيهي مبتكر يشمل الرسوم المتحركة والفيديوهات المتنوعة، لتوفير تجربة ممتعة وملهمة لجميع الأعمار.</p>
+            </div>
 
-<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-  document.getElementById('menuBtn').addEventListener('click', () => {
-    document.getElementById('mobileMenu').classList.toggle('hidden');
-  });
-  AOS.init({ duration: 800, once: true });
-</script>
+            <!-- بطاقة Howgan -->
+            <div class="team-card card-channel">
+                <a href="https://www.youtube.com/@Howgan" target="_blank">
+                    <img src="assets/svg/Howgan logo.png" alt="Howgan"/>
+                </a>
+                <h3>Howgan</h3>
+                <p>هو استوديو انميشن مستقل مصري ، يقدم اعمال الانميشن بشكل مختلف و عالي الجودة ، من ضمن أعمالنا هو "بطل"</p>
+            </div>
+
+            <!-- بطاقة Farcos -->
+            <div class="team-card card-channel">
+                <a href="https://www.youtube.com/@FARCOS123" target="_blank">
+                    <img src="assets/svg/Farcos logo.png" alt="Farcos"/>
+                </a>
+                <h3>Farcos</h3>
+                <p>هو فريق يتحدث عن الرسوم المتحركة.</p>
+            </div>
+        </div>
+    </section>
+
+    <hr>
+
+    <section id="videos">
+        <h2><span class="my">فيديو</span><span class="videos">هاتي</span></h2>
+    
+        <div class="video-item">
+            <a href="https://youtu.be/YoPXbRM7S6Y?si=t3_5XKTuVt9meku_" target="_blank">
+                <img src="assets/Thumbnail/Thumbnail8.png" alt="مصغرة 8">
+                <p class="video-title">كنوز مخبأة في عالم الكرتون | أعمال تستحق أن تراها قبل أن تُنسى</p>
+                <span class="badge badge-waha">على Waha toon</span>
+            </a>
+        </div>
+
+        <div class="video-item">
+            <a href="https://youtu.be/U_gguYrENEU?si=9p3BnGr6h-y-MIh8" target="_blank">
+                <img src="assets/Thumbnail/Thumbnail.png" alt="مصغرة 1">
+                <p class="video-title">من هو لوبين الثالث / شرح شخصية لوبين</p>
+                <span class="badge badge-personal">على قناتي الشخصية</span>
+            </a>
+        </div>
+    
+        <div class="video-item">
+            <a href="https://youtu.be/9taXSu-RHxc?si=Wzh6-1NAOtlm-uJ8" target="_blank">
+                <img src="assets/Thumbnail/Thumbnail2.png" alt="مصغرة 2">
+                <p class="video-title">كيف ولد سلغتيرا / من هو المؤلف؟</p>
+                <span class="badge badge-waha">على Waha toon</span>
+            </a>
+        </div>
+
+        <div class="video-item">
+            <a href="https://youtu.be/XUwVEuql6ho?si=uU1HzYQIAiEU305H" target="_blank">
+                <img src="assets/Thumbnail/Thumbnail4.png" alt="مصغرة 4">
+                <p class="video-title">أسئلة مع يوتيوبر كرتون : جلبت لكم سيف</p>
+                <span class="badge badge-personal">على قناتي الشخصية</span>
+            </a>
+        </div>
+
+        <div class="video-item">
+            <a href="https://youtu.be/-LTs62LIdM0?si=7nB8uhZ5e8BWBvZq" target="_blank">
+                <img src="assets/Thumbnail/Thumbnail5.png" alt="مصغرة 5">
+                <p class="video-title">قصة النباتات والزومبي من البداية للنهاية | دافيد بلازبنج ودكتور زومبوس</p>
+                <span class="badge badge-personal">على قناتي الشخصية</span>
+            </a>
+        </div>
+
+        <div class="video-item">
+            <a href="https://youtu.be/2QXS6dgwkwM?si=qM990gRJhsYs_uv4" target="_blank">
+                <img src="assets/Thumbnail/Thumbnail3.png" alt="مصغرة 3">
+                <p class="video-title">ملخص أخبار اليوتيوب : شهر أغسطس ويوليو</p>
+                <span class="badge badge-personal">على قناتي الشخصية</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- الفوتر -->
+    <footer class="site-footer" id="contactMe">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h3>Animaster</h3>
+                <p>صناعة المحتوى الإبداعي، البرمجة، وعوالم الرسوم المتحركة.</p>
+            </div>
+
+            <div class="footer-social">
+                <span class="footer-social-title">تواصل معي</span>
+                <ul class="social-icons">
+                    <li>
+                        <a href="https://www.instagram.com/animaster_channel?igsh=MWt6emI2NTFtNTcxYQ==" target="_blank" class="social-card" title="انستغرام">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram"/>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://youtube.com/@animaster_channel?si=ACCNV-O7EgYsPEPj" target="_blank" class="social-card" title="يوتيوب">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube"/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>جميع الحقوق محفوظة &copy; <span>محمد أمين</span></p>
+        </div>
+    </footer>
+
+    <!-- JavaScript لفتح وإغلاق النافذة -->
+    <script>
+        const modal = document.getElementById('subWorksModal');
+
+        // فتح النافذة
+        function openModal() {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // منع التمرير خلف النافذة
+        }
+
+        // إغلاق النافذة عند الضغط على زر X
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto'; // إعادة التمرير
+        }
+
+        // إغلاق النافذة عند الضغط في أي مكان على الخلفية المعتمة
+        function closeModalOnOverlay(event) {
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // إغلاق النافذة عند الضغط على زر ESC من الكيبورد
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+    </script>
 </body>
 </html>
