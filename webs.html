@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animaster | مواقعي</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Cairo:wght@600;700;800&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+            font-family: "Cairo", "Poppins", sans-serif;
+        }
+
+        /* التحكم في حجم اللوجو وشكله الدائري */
+        .logo-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            max-width: 100%;
+        }
+
+        .logo-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        body {
+            background-color: #0d1117;
+            background-image: url("assets/svg/New background.svg");
+            color: #fff;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1280px;
+            margin: 0 auto;
+            border-radius: 10px;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #f1c40f;
+            text-decoration: none;
+        }
+
+        .navigation ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            padding: 0;
+        }
+
+        .navigation a {
+            display: inline-block;
+            text-decoration: none;
+            color: #f1c40f;
+            font-weight: bold;
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            border: 1px solid rgba(241, 196, 15, 0.4);
+            background: rgba(241, 196, 15, 0.08);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .navigation a:hover {
+            color: #0d1117;
+            background: #f1c40f;
+            border-color: #f1c40f;
+            box-shadow: 0 4px 15px rgba(241, 196, 15, 0.4);
+            transform: translateY(-3px);
+        }
+
+        hr {
+            opacity: 0.5;
+            border: none;
+            border-top: 1px solid rgb(33, 211, 255);
+        }
+
+        .page-title {
+            text-align: center;
+            margin: 3rem auto 1rem auto;
+            max-width: 1280px;
+            padding: 0 1rem;
+        }
+
+        .page-title h1 {
+            font-size: 2.5rem;
+        }
+
+        .page-title .my {
+            color: #98ffe5;
+        }
+
+        .page-title .videos {
+            color: #00adb5;
+        }
+
+        .page-title p {
+            margin-top: 1rem;
+            font-size: 1.2rem;
+            color: rgba(171, 219, 249, 0.9);
+        }
+
+        .works {
+            padding: 1rem;
+            margin: 3rem auto 5rem auto;
+            max-width: 1280px;
+        }
+
+        .sub-works-list {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            list-style: none;
+        }
+
+        .sub-work-card {
+            background: rgba(30, 41, 59, 0.9);
+            border: 1px solid rgba(0, 173, 181, 0.3);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            width: 240px;
+        }
+
+        .sub-work-card:hover {
+            transform: translateY(-8px);
+            border-color: #00adb5;
+            box-shadow: 0 10px 25px rgba(0, 173, 181, 0.4);
+        }
+
+        .sub-work-card a {
+            text-decoration: none;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .sub-work-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .sub-work-card h4 {
+            font-size: 1.4rem;
+            color: #4dc3d7;
+        }
+
+        .sub-work-card p {
+            font-size: 0.95rem;
+            color: rgba(171, 219, 249, 0.85);
+            line-height: 1.6;
+        }
+
+        .site-footer {
+            background: linear-gradient(180deg, rgba(25, 12, 48, 0.8) 0%, rgba(15, 6, 30, 0.95) 100%);
+            border-top: 1px solid rgba(0, 173, 181, 0.3);
+            backdrop-filter: blur(12px);
+            padding: 3rem 1.5rem 1.5rem 1.5rem;
+            margin-top: 6rem;
+            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .footer-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.6rem;
+            color: #00adb5;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-brand p {
+            color: #aad3ff;
+            font-size: 0.95rem;
+            opacity: 0.85;
+        }
+
+        .footer-social {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 0.8rem;
+        }
+
+        .footer-social-title {
+            font-size: 1.1rem;
+            color: #f1c40f;
+            font-weight: bold;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            list-style: none;
+        }
+
+        .social-card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .social-card img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .social-card:hover {
+            background: rgba(0, 173, 181, 0.2);
+            border-color: #00adb5;
+            transform: translateY(-4px);
+            box-shadow: 0 6px 15px rgba(0, 173, 181, 0.3);
+        }
+
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 2rem auto 0 auto;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            text-align: center;
+            font-size: 0.9rem;
+            color: #8a99ad;
+        }
+
+        .footer-bottom span {
+            color: #00adb5;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .logo-img {
+                height: 40px;
+            }
+
+            .navigation ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-social {
+                align-items: center;
+            }
+
+            .sub-works-list {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .sub-work-card {
+                width: 100%;
+                max-width: 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <hr />
+
+    <header>
+        <a href="index.html" class="logo-link">
+            <img src="assets/svg/new logo 2.png" alt="شعار أنيمستر" class="logo-img"/>
+        </a>
+
+        <nav class="navigation">
+            <ul>
+                <li><a href="index.html">الرئيسية</a></li>
+            </ul>
+    </header>
+
+    <hr />
+
+    <section class="page-title">
+        <h1><span class="my">المواقع</span> <span class="videos">الإلكترونية</span></h1>
+        <p>هذه بعض المواقع التي قمت بتصميمها وبرمجتها.</p>
+    </section>
+
+    <hr/>
+
+    <!-- قسم عرض المواقع: كل موقع في بطاقة، بنفس تصميم بطاقات "بعض الأعمال" في index.html -->
+    <section class="works" id="works">
+        <ul class="sub-works-list">
+            <li class="sub-work-card">
+                <a href="https://motoon100.github.io/big_bank_web/" target="_blank">
+                    <img src="assets/big bank web.jpg" alt="Big Bank Web" />
+                    <h4>Big Bank</h4>
+                    <p>موقع ويب لرسام و أنيمتر.</p>
+                </a>
+            </li>
+
+            
+            <li class="sub-work-card">
+                <a href="https://motoon100.github.io/Howgan/" target="_blank">
+                    <img src="assets/howgan web.jpg" alt="Howgan Web" />
+                    <h4>Howgan</h4>
+                    <p>موقع ويب لستوديو هوجان.</p>
+                </a>
+            </li>
+
+
+            <li class="sub-work-card">
+                <a href="https://motoon100.github.io/shift/" target="_blank">
+                    <img src="assets/shift web.jpg" alt="Shift Web" />
+                    <h4>Shift</h4>
+                    <p>موقع ويب لستوديو شيفت.</p>
+                </a>
+            </li>
+
+        </ul>
+    </section>
+
+    <hr>
+
+    <!-- الفوتر -->
+    <footer class="site-footer" id="contactMe">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h3>Animaster</h3>
+                <p>صناعة المحتوى الإبداعي، البرمجة، وعوالم الرسوم المتحركة.</p>
+            </div>
+
+            <div class="footer-social">
+                <span class="footer-social-title">تواصل معي</span>
+                <ul class="social-icons">
+                    <li>
+                        <a href="https://www.instagram.com/animaster_channel?igsh=MWt6emI2NTFtNTcxYQ==" target="_blank" class="social-card" title="انستغرام">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram"/>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://youtube.com/@animaster_channel?si=ACCNV-O7EgYsPEPj" target="_blank" class="social-card" title="يوتيوب">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube"/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>جميع الحقوق محفوظة &copy; <span>محمد أمين</span></p>
+        </div>
+    </footer>
+
+</body>
+</html>
